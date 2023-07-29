@@ -4,6 +4,7 @@ Docker Image containing:
 
 - packer
   - plugin: github.com/ethanmdavidson/git
+  - plugin: github.com/hashicorp/ansible
   - plugin: github.com/hashicorp/vsphere
   - plugin: github.com/rgl/windows-update
 - ansible

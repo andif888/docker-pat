@@ -59,6 +59,7 @@ RUN curl -O https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${T
     && rm -f packer_${PACKER_VERSION}_linux_amd64.zip \
     && chmod +x /usr/bin/packer \
     && packer plugins install github.com/ethanmdavidson/git \
+    && packer plugins install github.com/hashicorp/ansible \
     && packer plugins install github.com/hashicorp/vsphere \
     && packer plugins install github.com/rgl/windows-update \
     && curl -O https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip \
