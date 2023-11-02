@@ -9,6 +9,11 @@ Docker Image containing:
   - plugin: github.com/rgl/windows-update
 - ansible
 - terraform
+  - provider: local
+  - provider: null
+  - provider: tls
+  - provider: vault
+  - provider: vsphere
 - vault
 
 [https://hub.docker.com/r/andif888/docker-pat](https://hub.docker.com/r/andif888/docker-pat)
