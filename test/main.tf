@@ -3,24 +3,24 @@ terraform {
 
     local = {
       source = "hashicorp/local"
-      version = ">=2.4.0"
+      version = ">=2.5.1"
     }
     null = {
       source = "hashicorp/null"
-      version = ">=3.2.1"
+      version = ">=3.2.2"
     }
     tls = {
       source = "hashicorp/tls"
-      version = ">=4.0.4"
+      version = ">=4.0.5"
     }
     vault = {
       source = "hashicorp/vault"
-      version = ">=3.22.0"
+      version = ">=3.25.0"
     }
     vsphere = {
       source = "hashicorp/vsphere"
-      version = ">=2.5.1"
+      version = ">=2.7.0"
     }
   }
-  required_version = ">=1.5.4"
+  required_version = ">=1.7.4"
 }

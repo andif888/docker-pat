@@ -1,14 +1,14 @@
 FROM ubuntu:jammy
 LABEL maintainer="andif888"
 ENV DEBIAN_FRONTEND noninteractive
-ENV TF_VERSION 1.6.6
-ENV PACKER_VERSION 1.10.0
-ENV VAULT_VERSION 1.15.4
-ENV TF_PROVIDER_LOCAL_VERSION 2.4.1
+ENV TF_VERSION 1.7.4
+ENV PACKER_VERSION 1.10.2
+ENV VAULT_VERSION 1.15.6
+ENV TF_PROVIDER_LOCAL_VERSION 2.5.1
 ENV TF_PROVIDER_NULL_VERSION 3.2.2
 ENV TF_PROVIDER_TLS_VERSION 4.0.5
-ENV TF_PROVIDER_VAULT_VERSION 3.23.0
-ENV TF_PROVIDER_VSPHERE_VERSION 2.6.1
+ENV TF_PROVIDER_VAULT_VERSION 3.25.0
+ENV TF_PROVIDER_VSPHERE_VERSION 2.7.0
 
 ENV pip_packages "ansible cryptography pywinrm kerberos requests_kerberos requests-credssp passlib PyVmomi markdown2 pymssql"
 
@@ -81,9 +81,9 @@ RUN curl -O https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${T
     && unzip vault_${VAULT_VERSION}_linux_amd64.zip -d /usr/bin \
     && rm -f vault_${VAULT_VERSION}_linux_amd64.zip \
     && chmod +x /usr/bin/vault \
-    && curl -O https://vdc-download.vmware.com/vmwb-repository/dcr-public/2ee5a010-babf-450b-ab53-fb2fa4de79af/2a136212-2f83-4f5d-a419-232f34dc08cf/VMware-ovftool-4.4.3-18663434-lin.x86_64.zip \
-    && unzip VMware-ovftool-4.4.3-18663434-lin.x86_64.zip -d /opt \
-    && rm -f VMware-ovftool-4.4.3-18663434-lin.x86_64.zip \
+    && curl -O https://vdc-download.vmware.com/vmwb-repository/dcr-public/8a93ce23-4f88-4ae8-b067-ae174291e98f/c609234d-59f2-4758-a113-0ec5bbe4b120/VMware-ovftool-4.6.2-22220919-lin.x86_64.zip \
+    && unzip VMware-ovftool-4.6.2-22220919-lin.x86_64.zip -d /opt \
+    && rm -f VMware-ovftool-4.6.2-22220919-lin.x86_64.zip \
     && ln -s /opt/ovftool/ovftool /usr/bin/ovftool
 
 CMD    ["/bin/bash"]
