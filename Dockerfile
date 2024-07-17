@@ -1,16 +1,16 @@
 FROM ubuntu:jammy
 LABEL maintainer="andif888"
-ENV DEBIAN_FRONTEND noninteractive
-ENV TF_VERSION 1.7.4
-ENV PACKER_VERSION 1.10.2
-ENV VAULT_VERSION 1.15.6
-ENV TF_PROVIDER_LOCAL_VERSION 2.5.1
-ENV TF_PROVIDER_NULL_VERSION 3.2.2
-ENV TF_PROVIDER_TLS_VERSION 4.0.5
-ENV TF_PROVIDER_VAULT_VERSION 3.25.0
-ENV TF_PROVIDER_VSPHERE_VERSION 2.7.0
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TF_VERSION=1.9.2
+ENV PACKER_VERSION=1.11.1
+ENV VAULT_VERSION=1.17.2
+ENV TF_PROVIDER_LOCAL_VERSION=2.5.1
+ENV TF_PROVIDER_NULL_VERSION=3.2.2
+ENV TF_PROVIDER_TLS_VERSION=4.0.5
+ENV TF_PROVIDER_VAULT_VERSION=4.3.0
+ENV TF_PROVIDER_VSPHERE_VERSION=2.8.2
 
-ENV pip_packages "ansible cryptography pywinrm kerberos requests_kerberos requests-credssp passlib PyVmomi markdown2 pymssql"
+ENV pip_packages="ansible cryptography pywinrm kerberos requests_kerberos requests-credssp passlib PyVmomi markdown2 pymssql"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -47,16 +47,16 @@ RUN apt-get update \
 
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
     locale-gen
-ENV LANG en_US.UTF-8  
-ENV LANGUAGE en_US:en  
-ENV LC_ALL en_US.UTF-8
+ENV LANG=en_US.UTF-8  
+ENV LANGUAGE=en_US:en  
+ENV LC_ALL=en_US.UTF-8
 
 RUN pip install --upgrade pip \
     && pip install $pip_packages \
     && ansible-galaxy collection install community.general community.hashi_vault
 
 RUN curl -O https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip \
-    && unzip terraform_${TF_VERSION}_linux_amd64.zip -d /usr/bin \
+    && unzip -o terraform_${TF_VERSION}_linux_amd64.zip -d /usr/bin \
     && rm -f terraform_${TF_VERSION}_linux_amd64.zip \
     && chmod +x /usr/bin/terraform \
     && mkdir -p /usr/share/terraform/plugins/registry.terraform.io/hashicorp/local \
@@ -70,7 +70,7 @@ RUN curl -O https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${T
     && mkdir -p /usr/share/terraform/plugins/registry.terraform.io/hashicorp/vsphere \
     && curl -O --output-dir /usr/share/terraform/plugins/registry.terraform.io/hashicorp/vsphere https://releases.hashicorp.com/terraform-provider-vsphere/${TF_PROVIDER_VSPHERE_VERSION}/terraform-provider-vsphere_${TF_PROVIDER_VSPHERE_VERSION}_linux_amd64.zip \
     && curl -O https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip \
-    && unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /usr/bin \
+    && unzip -o packer_${PACKER_VERSION}_linux_amd64.zip -d /usr/bin \
     && rm -f packer_${PACKER_VERSION}_linux_amd64.zip \
     && chmod +x /usr/bin/packer \
     && packer plugins install github.com/ethanmdavidson/git \
@@ -78,12 +78,12 @@ RUN curl -O https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${T
     && packer plugins install github.com/hashicorp/vsphere \
     && packer plugins install github.com/rgl/windows-update \
     && curl -O https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip \
-    && unzip vault_${VAULT_VERSION}_linux_amd64.zip -d /usr/bin \
+    && unzip -o vault_${VAULT_VERSION}_linux_amd64.zip -d /usr/bin \
     && rm -f vault_${VAULT_VERSION}_linux_amd64.zip \
     && chmod +x /usr/bin/vault \
-    && curl -O https://vdc-download.vmware.com/vmwb-repository/dcr-public/8a93ce23-4f88-4ae8-b067-ae174291e98f/c609234d-59f2-4758-a113-0ec5bbe4b120/VMware-ovftool-4.6.2-22220919-lin.x86_64.zip \
-    && unzip VMware-ovftool-4.6.2-22220919-lin.x86_64.zip -d /opt \
-    && rm -f VMware-ovftool-4.6.2-22220919-lin.x86_64.zip \
+    && curl -O https://minio.iamroot.it/public/vmware/VMware-ovftool-4.6.3-24031167-lin.x86_64.zip \
+    && unzip -o VMware-ovftool-4.6.3-24031167-lin.x86_64.zip -d /opt \
+    && rm -f VMware-ovftool-4.6.3-24031167-lin.x86_64.zip \
     && ln -s /opt/ovftool/ovftool /usr/bin/ovftool
 
 CMD    ["/bin/bash"]
