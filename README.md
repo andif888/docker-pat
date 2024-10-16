@@ -14,6 +14,7 @@ Docker Image containing:
   - provider: tls
   - provider: vault
   - provider: vsphere
+  - provider: citrix
 - vault
 
 [https://hub.docker.com/r/andif888/docker-pat](https://hub.docker.com/r/andif888/docker-pat)
