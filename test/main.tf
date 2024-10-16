@@ -21,6 +21,10 @@ terraform {
       source = "hashicorp/vsphere"
       version = ">=2.7.0"
     }
+    citrix = {
+      source = "citrix/citrix"
+      version = "1.0.4-wem-preview-2"
+    }
   }
   required_version = ">=1.7.4"
 }

@@ -3,12 +3,13 @@ LABEL maintainer="andif888"
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TF_VERSION=1.9.7
 ENV PACKER_VERSION=1.11.2
-ENV VAULT_VERSION=1.17.6
+ENV VAULT_VERSION=1.18.0
 ENV TF_PROVIDER_LOCAL_VERSION=2.5.2
 ENV TF_PROVIDER_NULL_VERSION=3.2.3
 ENV TF_PROVIDER_TLS_VERSION=4.0.6
 ENV TF_PROVIDER_VAULT_VERSION=4.4.0
-ENV TF_PROVIDER_VSPHERE_VERSION=2.9.2
+ENV TF_PROVIDER_VSPHERE_VERSION=2.9.3
+ENV TF_PROVIDER_CITRIX_VERSION=1.0.4-wem-preview-2
 
 ENV pip_packages="ansible cryptography pywinrm kerberos requests_kerberos requests-credssp passlib PyVmomi markdown2 pymssql"
 
@@ -69,6 +70,8 @@ RUN curl -O https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${T
     && curl -O --output-dir /usr/share/terraform/plugins/registry.terraform.io/hashicorp/vault https://releases.hashicorp.com/terraform-provider-vault/${TF_PROVIDER_VAULT_VERSION}/terraform-provider-vault_${TF_PROVIDER_VAULT_VERSION}_linux_amd64.zip \
     && mkdir -p /usr/share/terraform/plugins/registry.terraform.io/hashicorp/vsphere \
     && curl -O --output-dir /usr/share/terraform/plugins/registry.terraform.io/hashicorp/vsphere https://releases.hashicorp.com/terraform-provider-vsphere/${TF_PROVIDER_VSPHERE_VERSION}/terraform-provider-vsphere_${TF_PROVIDER_VSPHERE_VERSION}_linux_amd64.zip \
+    && mkdir -p /usr/share/terraform/plugins/registry.terraform.io/citrix/citrix \
+    && curl -O --output-dir /usr/share/terraform/plugins/registry.terraform.io/citrix/citrix -L https://github.com/citrix/terraform-provider-citrix/releases/download/v${TF_PROVIDER_CITRIX_VERSION}/terraform-provider-citrix_${TF_PROVIDER_CITRIX_VERSION}_linux_amd64.zip \
     && curl -O https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip \
     && unzip -o packer_${PACKER_VERSION}_linux_amd64.zip -d /usr/bin \
     && rm -f packer_${PACKER_VERSION}_linux_amd64.zip \
