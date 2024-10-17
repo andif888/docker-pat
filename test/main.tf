@@ -23,7 +23,7 @@ terraform {
     }
     citrix = {
       source = "citrix/citrix"
-      version = "1.0.4-wem-preview-2"
+      version = "1.0.5"
     }
   }
   required_version = ">=1.7.4"
