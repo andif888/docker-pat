@@ -22,7 +22,7 @@ terraform {
       version = ">=2.7.0"
     }
     citrix = {
-      source = "citrix/citrix"
+      source = "hashicorp/citrix"
       version = "1.0.5"
     }
   }
