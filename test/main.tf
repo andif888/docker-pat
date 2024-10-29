@@ -23,8 +23,8 @@ terraform {
     }
     citrix = {
       source = "hashicorp/citrix"
-      version = "1.0.5"
+      version = "1.0.6"
     }
   }
-  required_version = ">=1.7.4"
+  required_version = ">=1.9.8"
 }
