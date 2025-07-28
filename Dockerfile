@@ -54,7 +54,7 @@ ENV LC_ALL=en_US.UTF-8
 
 RUN pip install --upgrade pip \
     && pip install $pip_packages \
-    && ansible-galaxy collection install community.general community.hashi_vault
+    && ansible-galaxy collection install community.general community.vmware community.windows community.hashi_vault --force
 
 RUN curl -O https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip \
     && unzip -o terraform_${TF_VERSION}_linux_amd64.zip -d /usr/bin \
